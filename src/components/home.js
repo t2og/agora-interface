@@ -64,7 +64,10 @@ class Home extends Component {
         }
         let data = {};
         // Query events on chain
-        let events = await _agoraContract.getPastEvents("allEvents");
+        let events = await _agoraContract.getPastEvents("allEvents", {
+            fromBlock: "earliest",
+            topics: [web3.utils.keccak256("Sell(uint256,address,uint256)")]
+        });
         events.map(async (e, i) => {
             const tokenId = e.raw.topics[1];
             const seller = e.raw.topics[2];
