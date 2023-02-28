@@ -3,6 +3,8 @@ import Container from '@mui/material/Container';
 import Header from './components/header';
 import Home from './components/home';
 import Sell from './components/sell';
+import About from './components/about';
+import Source from './components/source';
 import Footer from './components/footer';
 import Web3 from 'web3';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -106,6 +108,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Home dataList={localDataList} />} />
             <Route path="/sell" element={<Sell dataList={localDataList} />} />
+            <Route path='/about' element={<About />} />
+            <Route path="/source" element={<Source />} />
           </Routes>
 
           <Footer />

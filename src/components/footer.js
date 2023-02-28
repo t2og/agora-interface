@@ -1,10 +1,11 @@
 import { Component } from "react";
 import { Grid, Stack, Link, Button, Typography, Box, List } from '@mui/material';
+import { Link as RouterLink } from "react-router-dom";
 
 class Linker extends Component {
     render() {
         return (
-            <Link href={this.props.href} underline="hover" color="white">
+            <Link component={RouterLink} to={this.props.href} underline="hover" color="white">
                 {this.props.text}
             </Link>
         )
@@ -18,13 +19,11 @@ class Footer extends Component {
             { text: 'Store Policy', href: '#' },
             { text: 'Help Center', href: '#' }];
         const linkArr2 = [
-            { text: 'How to sell an goods using Agora', href: '#' },
+            { text: 'How to sell goods using Agora', href: '#' },
             { text: 'What is a crypto wallet?', href: '#' },
             { text: 'What is cryptocurrency?', href: '#' }];
         const linkArr3 = [
-            { text: 'Facebook', href: '#' },
-            { text: 'Twitter', href: '#' },
-            { text: 'Github', href: '#' }];
+            { text: 'Github', href: '/Source' }];
         return (
             <Stack>
                 <Box sx={{ bgcolor: '#121212', height: 100, padding: 5 }}>

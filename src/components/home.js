@@ -62,13 +62,14 @@ class Home extends Component {
             _agoraContract = agoraContract;
             _merchandiseContract = merchandiseContract;
         }
-        let data = {};
+
         // Query events on chain
         let events = await _agoraContract.getPastEvents("allEvents", {
             fromBlock: "earliest",
             topics: [web3.utils.keccak256("Sell(uint256,address,uint256)")]
         });
-        events.map(async (e, i) => {
+        Promise.all(events.map(async (e, i) => {
+            let data = {};
             const tokenId = e.raw.topics[1];
             const seller = e.raw.topics[2];
             const url = await _merchandiseContract.methods.uri(tokenId).call();
@@ -85,10 +86,11 @@ class Home extends Component {
             data.description = itemInfo.description;
             data.attributes = itemInfo.attributes
             data.price = web3.utils.fromWei(mInfo.price);
-
-            this.setState(prevState => ({
-                dataList: [...prevState.dataList, data]
-            }))
+            return data;
+        })).then(results => {
+            this.setState({
+                dataList: results
+            });
         });
     }
 
@@ -172,7 +174,7 @@ class Home extends Component {
                         height="280"
                         image={data.image}
                     />
-                    <CardContent>
+                    <CardContent sx={{ height: 280 }}>
                         <Typography gutterBottom variant="h5" component="div">
                             {data.name}
                         </Typography>
