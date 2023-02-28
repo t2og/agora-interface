@@ -5,6 +5,7 @@ import Davatar from "@davatar/react";
 import { Link as RouterLink } from "react-router-dom";
 import { shortenAddress } from "../utils";
 import { AppContext } from "../AppContext";
+import Chip from '@mui/material/Chip';
 
 class Header extends Component {
     static contextType = AppContext;
@@ -42,8 +43,11 @@ class Header extends Component {
                 <Box>
                     {currentAccount ?
                         <Stack direction="row">
-                            <Box><Davatar size={20} address={currentAccount} provider={this.props.provider} /></Box>
-                            <Box><Typography>{shortenAddress(currentAccount, 13)}</Typography></Box>
+                            <Chip
+                                avatar={<Davatar size={20} address={currentAccount} provider={this.props.provider} />}
+                                label={shortenAddress(currentAccount, 13)}
+                                variant="outlined"
+                            />
                         </Stack>
                         :
                         <Button onClick={connectWallet} variant="contained" startIcon={<AccountBalanceWalletIcon />}>

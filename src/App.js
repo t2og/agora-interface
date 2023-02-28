@@ -48,7 +48,7 @@ function App() {
     setWeb3(web3);
 
     //Set Provider
-    setProvider(web3Provider);
+    setProvider(web3.eth.currentProvider);
     // Set User's account
     !accounts ?
       web3.eth.getAccounts(function (error, accounts) {

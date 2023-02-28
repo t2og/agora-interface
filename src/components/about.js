@@ -1,7 +1,7 @@
 import { Component } from "react";
 import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
-import { Typography, Divider, Fab } from "@mui/material";
+import { Typography, Divider } from "@mui/material";
 import GitHubIcon from '@mui/icons-material/GitHub';
 import { Stack } from "@mui/system";
 
