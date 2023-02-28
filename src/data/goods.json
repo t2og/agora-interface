@@ -1,0 +1,27 @@
+{
+    "name": "USB C Charger Baseus PowerCombo 65W",
+    "image": "https://m.media-amazon.com/images/I/5153L5zzCKL._AC_SY606_.jpg",
+    "description": "USB C Charger Baseus PowerCombo 65W USB C Charging Station with 2 Outlets Extender, Fast Charging, USB C Wall Charger Compatible with MacBook Laptops iPhone Samsung iPad (100W Type C Cable Included)",
+    "attributes": [
+        {
+            "trait_type": "Brand",
+            "value": "Baseus"
+        },
+        {
+            "trait_type": "Total Power Outlets",
+            "value": "2"
+        },
+        {
+            "trait_type": "Voltage",
+            "value": "125"
+        },
+        {
+            "trait_type": "Color",
+            "value": "Black"
+        },
+        {
+            "trait_type": "Special Feature",
+            "value": "Fast Charging, Short Circuit Protection"
+        }
+    ]
+}

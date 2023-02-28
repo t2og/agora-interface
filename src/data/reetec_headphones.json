@@ -1,0 +1,23 @@
+{
+    "name": "REETEC Active Noise Cancelling Headphones",
+    "image": "https://m.media-amazon.com/images/I/61bQYCH6s3S._AC_SY450_.jpg",
+    "description": "Active Noise Cancelling Headphones, REETEC Wireless Over Ear Bluetooth Headphones with Microphone ANC Headphones Long Playtime Hi-Fi Deep Bass Earphones Headset for TV Airplane Travel - Navy Blue",
+    "attributes": [
+        {
+            "trait_type": "Brand",
+            "value": "REETEC"
+        },
+        {
+            "trait_type": "Form Factor",
+            "value": "Over Ear"
+        },
+        {
+            "trait_type": "Color",
+            "value": "Blue"
+        },
+        {
+            "trait_type": "Connectivity Technology",
+            "value": "Wireless"
+        }
+    ]
+}

@@ -1,0 +1,31 @@
+{
+    "name": "Acer Aspire 5 A515-45-R74Z Slim Laptop",
+    "image": "https://m.media-amazon.com/images/I/71SCvh0L3OL._AC_UL400_.jpg",
+    "description": "AMD Ryzen 5 5500U Hexa-Core Mobile Processor with AMD Radeon Graphics.Maximum Power Supply Wattage 45 W\n15.6\" Full HD (1920 x 1080) Widescreen LED-backlit IPS Display\n8GB DDR4 Onboard Memory and 256GB NVMe SSD\n1 - USB 3.2 (Type-C) Gen 1 port (up to 5 Gbps) | 2 - USB 3.2 Gen 1 Ports (one with Power-off Charging) | 1 - USB 2.0 Port | 1 - HDMI 2.0 Port with HDCP support\nWi-Fi 6 | Backlit Keyboard | Up to 11 Hours Battery Life | Comes with Windows 11 Home",
+    "attributes": [
+        {
+            "trait_type": "Brand",
+            "value": "Acer"
+        },
+        {
+            "trait_type": "Series",
+            "value": "Aspire 5"
+        },
+        {
+            "trait_type": "Screen Size",
+            "value": "15.6 Inches"
+        },
+        {
+            "trait_type": "Color",
+            "value": "Silver"
+        },
+        {
+            "trait_type": "Hard Disk Size",
+            "value": "256 GB"
+        },
+        {
+            "trait_type": "CPU Model",
+            "value": "AMD Ryzen 5 5500U"
+        }
+    ]
+}

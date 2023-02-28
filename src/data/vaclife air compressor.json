@@ -1,0 +1,23 @@
+{
+    "name": "VacLife Air Compressor Tire Inflator",
+    "image": "https://m.media-amazon.com/images/I/51ecgrAO20L._AC_SY450_.jpg",
+    "description": "VacLife Air Compressor Tire Inflator, DC 12V Portable Air Compressor for Car Tires, Auto Tire Pump with LED Light, Digital Air Pump for Car Tires, Bicycles and Other Inflatables",
+    "attributes": [
+        {
+            "trait_type": "Brand",
+            "value": "VacLife"
+        },
+        {
+            "trait_type": "Voltage",
+            "value": "12 Volts"
+        },
+        {
+            "trait_type": "Power Source",
+            "value": "Corded Electric"
+        },
+        {
+            "trait_type": "Special Feature",
+            "value": "Portable, Digital, Easy to use, Lamp, DC 12V"
+        }
+    ]
+}

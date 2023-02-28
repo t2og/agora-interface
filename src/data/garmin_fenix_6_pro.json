@@ -1,0 +1,23 @@
+{
+    "name": "Garmin Fenix 6 Pro",
+    "image": "https://m.media-amazon.com/images/I/7191EyVICUL._AC_SX679_.jpg",
+    "description": "Garmin Fenix 6 Pro, Premium Multisport GPS Watch, Features Mapping, Music, Grade-Adjusted Pace Guidance and Pulse Ox Sensors, Black",
+    "attributes": [
+        {
+            "trait_type": "Brand",
+            "value": "Garmin"
+        },
+        {
+            "trait_type": "Model Name",
+            "value": "Fenix 6 Pro, Black w/Black Band"
+        },
+        {
+            "trait_type": "Screen Size",
+            "value": "1.3 Inches"
+        },
+        {
+            "trait_type": "Special Feature",
+            "value": "Bluetooth"
+        }
+    ]
+}

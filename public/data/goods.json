@@ -1,0 +1,134 @@
+[
+    {
+        "name": "Acer Aspire 5 A515-45-R74Z Slim Laptop",
+        "image": "https://m.media-amazon.com/images/I/71SCvh0L3OL._AC_UL400_.jpg",
+        "description": "AMD Ryzen 5 5500U Hexa-Core Mobile Processor with AMD Radeon Graphics.Maximum Power Supply Wattage 45 W\n15.6\" Full HD (1920 x 1080) Widescreen LED-backlit IPS Display\n8GB DDR4 Onboard Memory and 256GB NVMe SSD\n1 - USB 3.2 (Type-C) Gen 1 port (up to 5 Gbps) | 2 - USB 3.2 Gen 1 Ports (one with Power-off Charging) | 1 - USB 2.0 Port | 1 - HDMI 2.0 Port with HDCP support\nWi-Fi 6 | Backlit Keyboard | Up to 11 Hours Battery Life | Comes with Windows 11 Home",
+        "attributes": [
+            {
+                "trait_type": "Brand",
+                "value": "Acer"
+            },
+            {
+                "trait_type": "Series",
+                "value": "Aspire 5"
+            },
+            {
+                "trait_type": "Screen Size",
+                "value": "15.6 Inches"
+            },
+            {
+                "trait_type": "Color",
+                "value": "Silver"
+            },
+            {
+                "trait_type": "Hard Disk Size",
+                "value": "256 GB"
+            },
+            {
+                "trait_type": "CPU Model",
+                "value": "AMD Ryzen 5 5500U"
+            }
+        ],
+        "url": "./data/acer_a515.json"
+    },
+    {
+        "name": "USB C Charger Baseus PowerCombo 65W",
+        "image": "https://m.media-amazon.com/images/I/5153L5zzCKL._AC_SY606_.jpg",
+        "description": "USB C Charger Baseus \nPowerCombo 65W USB C Charging Station with 2 Outlets Extender, Fast Charging, USB C Wall Charger Compatible with MacBook Laptops iPhone Samsung iPad (100W Type C Cable Included)",
+        "attributes": [
+            {
+                "trait_type": "Brand",
+                "value": "Baseus"
+            },
+            {
+                "trait_type": "Total Power Outlets",
+                "value": "2"
+            },
+            {
+                "trait_type": "Voltage",
+                "value": "125"
+            },
+            {
+                "trait_type": "Color",
+                "value": "Black"
+            },
+            {
+                "trait_type": "Special Feature",
+                "value": "Fast Charging, Short Circuit Protection"
+            }
+        ],
+        "url": "./data/baseus_usb_charger.json"
+    },
+    {
+        "name": "Garmin Fenix 6 Pro",
+        "image": "https://m.media-amazon.com/images/I/7191EyVICUL._AC_SX679_.jpg",
+        "description": "Garmin Fenix 6 Pro, Premium Multisport GPS Watch, Features Mapping, Music, Grade-Adjusted Pace Guidance and Pulse Ox Sensors, Black",
+        "attributes": [
+            {
+                "trait_type": "Brand",
+                "value": "Garmin"
+            },
+            {
+                "trait_type": "Model Name",
+                "value": "Fenix 6 Pro, Black w/Black Band"
+            },
+            {
+                "trait_type": "Screen Size",
+                "value": "1.3 Inches"
+            },
+            {
+                "trait_type": "Special Feature",
+                "value": "Bluetooth"
+            }
+        ],
+        "url": "./data/garmin_fenix_6_pro.json"
+    },
+    {
+        "name": "REETEC Active Noise Cancelling Headphones",
+        "image": "https://m.media-amazon.com/images/I/61bQYCH6s3S._AC_SY450_.jpg",
+        "description": "Active Noise Cancelling Headphones, REETEC Wireless Over Ear Bluetooth Headphones with Microphone ANC Headphones Long Playtime Hi-Fi Deep Bass Earphones Headset for TV Airplane Travel - Navy Blue",
+        "attributes": [
+            {
+                "trait_type": "Brand",
+                "value": "REETEC"
+            },
+            {
+                "trait_type": "Form Factor",
+                "value": "Over Ear"
+            },
+            {
+                "trait_type": "Color",
+                "value": "Blue"
+            },
+            {
+                "trait_type": "Connectivity Technology",
+                "value": "Wireless"
+            }
+        ],
+        "url": "./data/reetec_headphones.json"
+    },
+    {
+        "name": "VacLife Air Compressor Tire Inflator",
+        "image": "https://m.media-amazon.com/images/I/51ecgrAO20L._AC_SY450_.jpg",
+        "description": "VacLife Air Compressor Tire Inflator, DC 12V Portable Air Compressor for Car Tires, Auto Tire Pump with LED Light, Digital Air Pump for Car Tires, Bicycles and Other Inflatables",
+        "attributes": [
+            {
+                "trait_type": "Brand",
+                "value": "VacLife"
+            },
+            {
+                "trait_type": "Voltage",
+                "value": "12 Volts"
+            },
+            {
+                "trait_type": "Power Source",
+                "value": "Corded Electric"
+            },
+            {
+                "trait_type": "Special Feature",
+                "value": "Portable, Digital, Easy to use, Lamp, DC 12V"
+            }
+        ],
+        "url": "./data/vaclife_air_compressor.json"
+    }
+]
