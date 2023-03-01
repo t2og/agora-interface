@@ -15,6 +15,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import TextField from '@mui/material/TextField';
+import { USE_NETWORK, RPC_PROVIDERS } from "../config/chains";
 
 class Home extends Component {
     static contextType = AppContext;
@@ -32,7 +33,7 @@ class Home extends Component {
     getWeb3 = () => {
         const { web3 } = this.context;
         if (this.state.web3 === null) {
-            return web3 !== null ? web3 : new Web3('http://localhost:8545');
+            return web3 !== null ? web3 : new Web3(RPC_PROVIDERS[USE_NETWORK]);
         }
     }
 
@@ -132,7 +133,7 @@ class Home extends Component {
 
     handelChange = (event) => {
         const deliveryAddress = event.target.value;
-        this.setState({ isValid: deliveryAddress != '' });
+        this.setState({ isValid: deliveryAddress !== '' });
         this.setState({ deliveryAddress: deliveryAddress })
     }
 

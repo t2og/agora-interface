@@ -1,5 +1,4 @@
 import { Component } from "react";
-import { styled } from '@mui/material/styles';
 import { Stack, Paper, Box } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
 import Card from '@mui/material/Card';
@@ -15,7 +14,6 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import TextField from '@mui/material/TextField';
 import { AppContext } from "../AppContext";
-import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 
 class ItemInfo extends Component {
     static contextType = AppContext;
@@ -29,7 +27,9 @@ class ItemInfo extends Component {
         errorMsg: '',
         marginRate: 0,
         feeRate: 0,
-        totalPay: 0
+        totalPay: 0,
+        canApprove: true,
+        canConfirm: true
     }
 
     checkIsApproved = () => {
@@ -57,7 +57,7 @@ class ItemInfo extends Component {
         const totalPay = (totalPrice * marginRate / 10000) + (totalPrice * feeRate / 10000);
         // Commit
         const receipt = await agoraContract.methods.sell(amount.toString(), web3.utils.toWei(price.toString()), data.url)
-            .send({ from: currentAccount, value: web3.utils.toWei(totalPay.toString()) });
+            .send({ from: currentAccount, value: web3.utils.toWei(totalPay.toFixed(18)) });
         return receipt;
     }
 
@@ -93,7 +93,11 @@ class ItemInfo extends Component {
         merchandiseContract.methods.setApprovalForAll(agoraAddress, true).send({ from: currentAccount }).then((receipt) => {
             console.log(receipt);
             this.checkIsApproved();
+        }).finally(() => {
+            this.setState({ canApprove: true });
         });
+
+        this.setState({ canApprove: false });
     }
 
     handelChange = (event) => {
@@ -108,11 +112,19 @@ class ItemInfo extends Component {
             this.setState({ isValid: false, errorMsg: "Incorrect price." })
             return;
         }
+        if (parseFloat(this.state.totalPay) === 0) {
+            this.setState({ isValid: false, errorMsg: "Incorrect total pay." })
+            return;
+        }
         // Sell
         this.sell().then((receipt) => {
             console.log(receipt);
             this.setState({ open: false });
+        }).finally(() => {
+            this.setState({ canConfirm: true });
         });
+
+        this.setState({ canConfirm: false });
     }
 
     sellDialog() {
@@ -160,8 +172,8 @@ class ItemInfo extends Component {
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={this.handleCancel} variant="outlined" >Cancel</Button>
-                    {!this.state.approved && <Button onClick={this.handelApprove} color="info" variant="contained" >Approve</Button>}
-                    {this.state.approved && <Button onClick={this.handleConfirm} color="success" variant="contained" >Confirm</Button>}
+                    {!this.state.approved && <Button onClick={this.handelApprove} color="info" variant="contained" disabled={!this.state.canApprove}>Approve</Button>}
+                    {this.state.approved && <Button onClick={this.handleConfirm} color="success" variant="contained" disabled={!this.state.canConfirm} >Confirm</Button>}
                 </DialogActions>
             </Dialog>
         )
