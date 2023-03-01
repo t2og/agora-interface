@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { Grid, Stack, Link, Button, Typography, Box, List } from '@mui/material';
+import { Stack, Link, Box } from '@mui/material';
 import { Link as RouterLink } from "react-router-dom";
 
 class Linker extends Component {

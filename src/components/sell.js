@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { Stack, Paper, Box } from '@mui/material';
+import { Stack } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -48,7 +48,7 @@ class ItemInfo extends Component {
         const {
             data
         } = this.props;
-        const { currentAccount, web3, agoraContract, merchandiseContract } = this.context;
+        const { currentAccount, web3, agoraContract } = this.context;
         // Calculate margin and fee 
         const { amount, price } = this.state;
         const totalPrice = amount * price;
