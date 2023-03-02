@@ -11,6 +11,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AppContext } from './AppContext';
 import AgoraContract from './contracts/Agora.json';
 import MerchandiseContract from './contracts/Merchandise.json';
+import MuiAlert from '@mui/material/Alert';
 
 function App() {
   const [currentAccount, setCurrentAccount] = useState('');
@@ -103,6 +104,8 @@ function App() {
     <AppContext.Provider value={{ currentAccount, connectWallet, web3, agoraContract, merchandiseContract }}>
       <Container maxWidth="xl" fixed>
         <Router>
+          <MuiAlert severity="warning">Welcome to Agora, a blockchain-based e-commerce shopping
+            platform, currently under development and is running on Goerli Testnet.</MuiAlert>
           <Header provider={provider} />
 
           <Routes>

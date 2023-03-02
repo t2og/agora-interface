@@ -1,10 +1,8 @@
 import { Component } from "react";
 import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
-import { Typography, Divider, Fab } from "@mui/material";
+import { Typography } from "@mui/material";
 import GitHubIcon from '@mui/icons-material/GitHub';
 import Chip from '@mui/material/Chip';
-import { WindowSharp } from "@mui/icons-material";
 
 class Source extends Component {
 
