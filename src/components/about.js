@@ -22,21 +22,31 @@ class About extends Component {
                 <Box>
                     <Typography display="flex" justifyContent="center" sx={{ padding: 2 }} variant="h5">About Agora</Typography>
                     <Divider />
-                    <Typography sx={{ padding: 1, margin: 1 }} variant="body1">Agora is a cutting-edge blockchain-based e-commerce platform,
-                        where secure and transparent transactions meet innovative and user-friendly features. Our platform harnesses
-                        the power of distributed ledger technology to revolutionize the way e-commerce operates, creating a more secure
-                        and trustworthy environment for buyers and sellers alike.</Typography>
-                    <Typography sx={{ padding: 1, margin: 1 }} variant="body1">With our blockchain platform, you can enjoy unparalleled security and transparency in your online
-                        transactions. Each transaction is recorded on a tamper-proof ledger that is immutable, making fraud and hacking
-                        virtually impossible. Plus, our user-friendly interface makes it easy for anyone to buy and sell products
-                        with ease.</Typography>
-                    <Typography sx={{ padding: 1, margin: 1 }}>Our platform also offers a range of innovative features to enhance your e-commerce experience.
-                        From smart contracts that automate transactions and enforce the terms of a deal, to decentralized marketplaces
-                        that connect buyers and sellers directly, our platform is designed to empower you in every aspect of your online
-                        transactions.</Typography>
-                    <Typography sx={{ padding: 1, margin: 1 }}>Join our blockchain e-commerce platform today and experience the future of
-                        online transactions. With our advanced technology and user-friendly features, you'll enjoy a seamless and secure
-                        e-commerce experience that is unmatched in the industry.</Typography>
+                    <Typography sx={{ padding: 1, margin: 1 }} variant="body1">Agora is a blockchain-based e-commerce platform that offers a range of features for buying
+                        and selling goods online. Here's a brief overview of the platform's functionality:</Typography>
+                    <Typography sx={{ padding: 1, margin: 1 }}><b>Sell Goods:</b> Sellers can list their products for sale on the platform. </Typography>
+
+                    <Typography sx={{ padding: 1, margin: 1 }}><b>Buy Goods:</b> Shoppers can browse through various stores and purchase items using cryptocurrency.</Typography>
+
+                    <Typography sx={{ padding: 1, margin: 1 }}><b>Fill Out Shipping Info</b>: Once a seller receives an order from a buyer, they can enter the shipping details,
+                        including the tracking number, to inform the buyer of the status of their shipment.
+                        This allows buyers to track their orders and ensures that they receive their purchases in a timely manner. </Typography>
+
+                    <Typography sx={{ padding: 1, margin: 1 }}><b>Confirm Receipt Infor</b>: Once the products have been received, the buyer or seller can confirm the transaction,
+                        ensuring that the payment is released to the seller.</Typography>
+
+                    <Typography sx={{ padding: 1, margin: 1 }}><b>Refunds:</b> If the seller has not shipped the product yet, the buyer can request a refund through the platform.
+                        The platform's smart contract will ensure that the buyer receives a refund.</Typography>
+
+                    <Typography sx={{ padding: 1, margin: 1 }}><b>Returns:</b>  Buyers can initiate a return through the platform if they receive a defective or incorrect product,
+                        and the platform's smart contract will start the return process.</Typography>
+
+                    <Typography sx={{ padding: 1, margin: 1 }}><b>Settle Transactions:</b> Once the buyer confirms the receipt of the products and the transaction is completed,
+                        the seller can settle the payment and receive the funds in their account. The platform's smart contract
+                        ensures that all transactions are processed quickly and securely.</Typography>
+
+                    <Typography sx={{ padding: 1, margin: 1 }}>More features are currently under development to enhance the platform's functionality and provide an even better user experience.
+                    </Typography>
                     <Divider />
                     <Box display="flex" justifyContent="left">
                         <Stack direction="row" alignItems="center">
