@@ -4,5 +4,5 @@ export const USE_NETWORK = GOERLI;
 
 export const RPC_PROVIDERS = {
     [TESTNET]: "http://localhost:8545",
-    [GOERLI]: ""
+    [GOERLI]: process.env.REACT_APP_PROVIDER_API_KEY
 }

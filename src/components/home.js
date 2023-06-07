@@ -16,6 +16,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import TextField from '@mui/material/TextField';
 import { USE_NETWORK, RPC_PROVIDERS } from "../config/chains";
+import { GET_LIST_URL } from "../config/backend";
 
 class Home extends Component {
     static contextType = AppContext;
@@ -62,6 +63,27 @@ class Home extends Component {
         } else {
             _agoraContract = agoraContract;
             _merchandiseContract = merchandiseContract;
+        }
+
+        // Query events on backend
+        let dataList = [];
+        if (GET_LIST_URL !== '') {
+            try {
+                const response = await fetch(GET_LIST_URL);
+                dataList = await response.json();
+                // short address
+                dataList.map((data, index) => {
+                    data.seller = shortenAddress(data.seller, 13);
+                })
+                this.setState({
+                    dataList: dataList
+                });
+            } catch (error) {
+                console.log('Backend failed', error);
+            }
+        }
+        if (dataList.length > 0) {
+            return;
         }
 
         // Query events on chain
