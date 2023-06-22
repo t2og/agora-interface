@@ -6,6 +6,7 @@ import { Link as RouterLink } from "react-router-dom";
 import { shortenAddress } from "../utils";
 import { AppContext } from "../AppContext";
 import Chip from '@mui/material/Chip';
+import Wallet from "./wallet";
 
 class Header extends Component {
     static contextType = AppContext;
@@ -50,9 +51,7 @@ class Header extends Component {
                             />
                         </Stack>
                         :
-                        <Button onClick={connectWallet} variant="contained" startIcon={<AccountBalanceWalletIcon />}>
-                            Connect Wallet
-                        </Button>
+                        <Wallet></Wallet>
                     }
                 </Box>
             </Stack>

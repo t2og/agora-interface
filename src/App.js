@@ -12,6 +12,8 @@ import { AppContext } from './AppContext';
 import AgoraContract from './contracts/Agora.json';
 import MerchandiseContract from './contracts/Merchandise.json';
 import MuiAlert from '@mui/material/Alert';
+import { USE_NETWORK, RPC_PROVIDERS } from "./config/chains";
+import CoinbaseWalletSDK from '@coinbase/wallet-sdk'
 
 function App() {
   const [currentAccount, setCurrentAccount] = useState('');
@@ -21,28 +23,52 @@ function App() {
   const [merchandiseContract, setMerchandiseContract] = useState(null);
   const [localDataList, setLocalData] = useState([]);
 
-  const connectWallet = async () => {
+  const connectWallet = async (walletType, callback) => {
     let web3;
     let web3Provider;
     let accounts;
-    // Modern dapp browsers...
-    if (window.ethereum) {
-      web3Provider = window.ethereum;
-      try {
-        accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-      } catch (error) {
-        if (error.code === 4001) {
-          console.error("User denied account access")
+    switch (walletType) {
+      case 'metamask':
+        // Modern dapp browsers...
+        if (window.ethereum) {
+          web3Provider = window.ethereum;
+          try {
+            accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+          } catch (error) {
+            if (error.code === 4001) {
+              console.error("User denied account access")
+            }
+          }
         }
-      }
+        // Legacy dapp browsers...
+        else if (window.web3) {
+          web3Provider = window.web3.currentProvider;
+        }
+        // If no injected web3 instance is detected, fall back to Ganache
+        else {
+          web3Provider = new Web3.providers.HttpProvider('http://localhost:8545');
+          callback("Wallet not detected. Connect or install wallet and retry");
+          console.error("Wallet not detected");
+          return;
+        }
+        break;
+      case 'coinbase':
+        web3Provider = getCoinbaseProvider();
+        try {
+          accounts = await web3Provider.request({ method: 'eth_requestAccounts' });
+        } catch (error) {
+          if (error.code === 4001) {
+            console.error("User denied account access");
+          }
+        }
+        break;
+      default:
+        console.error("Missing wallet type");
     }
-    // Legacy dapp browsers...
-    else if (window.web3) {
-      web3Provider = window.web3.currentProvider;
-    }
-    // If no injected web3 instance is detected, fall back to Ganache
-    else {
-      web3Provider = new Web3.providers.HttpProvider('http://localhost:8545');
+    // Returned if accounts is null
+    if (!accounts) {
+      console.error('No accounts');
+      return;
     }
     //Set web3 instance
     web3 = new Web3(web3Provider);
@@ -63,6 +89,20 @@ function App() {
     // Set contract instance
     await registerContract(web3);
 
+  }
+
+  const getCoinbaseProvider = () => {
+    const APP_NAME = 'Agora';
+    const APP_LOGO_URL = 'https://app.agorasea.top/favicon.ico';
+    const DEFAULT_ETH_JSONRPC_URL = RPC_PROVIDERS[USE_NETWORK];
+    const DEFAULT_CHAIN_ID = USE_NETWORK;
+
+    const coinbaseWallet = new CoinbaseWalletSDK({
+      appName: APP_NAME,
+      appLogoUrl: APP_LOGO_URL,
+      darkMode: false
+    });
+    return coinbaseWallet.makeWeb3Provider(DEFAULT_ETH_JSONRPC_URL, DEFAULT_CHAIN_ID);
   }
 
   const registerContract = async (web3) => {

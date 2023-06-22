@@ -52,7 +52,6 @@ class About extends Component {
                         <Stack direction="row" alignItems="center">
                             <Typography sx={{ padding: 1, margin: 1 }} variant="button">Source code:</Typography>
                             <Chip sx={{ margin: 1 }} color="info" icon={<GitHubIcon />} label="Contract" onClick={() => { window.open("https://github.com/njxieyt/agora") }} />
-                            <Chip sx={{ margin: 1 }} color="info" icon={<GitHubIcon />} label="Interface" onClick={() => { window.open("https://github.com/njxieyt/agora-interface") }} />
                         </Stack>
                     </Box>
                 </Box>

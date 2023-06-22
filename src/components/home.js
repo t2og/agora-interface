@@ -17,6 +17,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import TextField from '@mui/material/TextField';
 import { USE_NETWORK, RPC_PROVIDERS } from "../config/chains";
 import { GET_LIST_URL } from "../config/backend";
+import CircularProgress from '@mui/material/CircularProgress';
 
 class Home extends Component {
     static contextType = AppContext;
@@ -239,15 +240,20 @@ class Home extends Component {
 
     render() {
         return (
-            <Grid container spacing={2} minHeight={160} sx={{ padding: 5 }}>
-                {
-                    this.state.dataList.map((data, index) => (
-                        <Grid xs={2} sm={4} md={4} key={index}>
-                            {this.item(data)}
-                        </Grid>
-                    ))
-                }
-            </Grid>
+            <>
+                {this.state.dataList.length < 1 && <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight:'300px' }}>
+                    <CircularProgress />
+                </Box>}
+                <Grid container spacing={2} minHeight={160} sx={{ padding: 5 }}>
+                    {
+                        this.state.dataList.map((data, index) => (
+                            <Grid xs={2} sm={4} md={4} key={index}>
+                                {this.item(data)}
+                            </Grid>
+                        ))
+                    }
+                </Grid>
+            </>
         )
     }
 }
