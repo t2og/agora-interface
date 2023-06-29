@@ -7,7 +7,7 @@ import Button from '@mui/material/Button';
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 import MuiAlert from '@mui/material/Alert';
 import { AppContext } from "../AppContext";
-import { Box } from "@mui/material";
+import { Box, CircularProgress } from "@mui/material";
 
 class Wallet extends Component {
     static contextType = AppContext;
@@ -15,6 +15,7 @@ class Wallet extends Component {
     state = {
         open: false,
         tips: '',
+        isLoading: false,
     }
 
     handleOpen = () => {
@@ -23,6 +24,10 @@ class Wallet extends Component {
 
     handleClose = () => {
         this.setState({ open: false });
+    }
+
+    handleByState = (isOpen, isLoading = false) => {
+        this.setState({ open: isOpen, isLoading: isLoading });
     }
 
     setTips = (message) => {
@@ -46,39 +51,59 @@ class Wallet extends Component {
                 }} open={this.state.open} onClose={this.handleClose}>
                     <DialogTitle>Connect a wallet</DialogTitle>
                     <DialogContent>
-                        <Stack spacing={2}>
-                            {this.state.tips && <MuiAlert severity="warning">{this.state.tips}</MuiAlert>}
-                            <Button variant="outlined"
-                                sx={{
-                                    display: 'flex',
-                                    flexDirection: 'row',
-                                    justifyContent: 'space-between',
-                                    width: '100%',
-                                    mb: '8px',
-                                    textTransform: 'none',
-                                }}
-                                size="large" endIcon={<img
-                                    src={`/icons/wallets/browserWallet.svg`}
-                                    width="24px"
-                                    height="24px"
-                                    alt={`browser wallet icon`}
-                                />} onClick={() => { connectWallet('metamask', this.setTips) }}>Browser Wallet</Button>
-                            <Button variant="outlined"
-                                sx={{
-                                    display: 'flex',
-                                    flexDirection: 'row',
-                                    justifyContent: 'space-between',
-                                    width: '100%',
-                                    mb: '8px',
-                                    textTransform: 'none',
-                                }}
-                                size="large" endIcon={<img
-                                    src={`/icons/wallets/coinbase.svg`}
-                                    width="24px"
-                                    height="24px"
-                                    alt={`coinbase wallet icon`}
-                                />} onClick={() => { connectWallet('coinbase', this.setTips) }}>Coinbase Wallet</Button>
-                        </Stack>
+                        {!this.state.isLoading &&
+                            <Stack justifyContent="space-evenly" alignItems="center">
+                                {this.state.tips && <MuiAlert severity="warning">{this.state.tips}</MuiAlert>}
+                                <Button variant="outlined"
+                                    sx={{
+                                        display: 'flex',
+                                        flexDirection: 'row',
+                                        justifyContent: 'space-between',
+                                        width: '100%',
+                                        mb: '8px',
+                                        textTransform: 'none',
+                                    }}
+                                    size="large" endIcon={<img
+                                        src={`/icons/wallets/browserWallet.svg`}
+                                        width="24px"
+                                        height="24px"
+                                        alt={`browser wallet icon`}
+                                    />} onClick={() => { connectWallet('metamask', this.setTips) }}>Browser Wallet</Button>
+                                <Button variant="outlined"
+                                    sx={{
+                                        display: 'flex',
+                                        flexDirection: 'row',
+                                        justifyContent: 'space-between',
+                                        width: '100%',
+                                        mb: '8px',
+                                        textTransform: 'none',
+                                    }}
+                                    size="large" endIcon={<img
+                                        src={`/icons/wallets/coinbase.svg`}
+                                        width="24px"
+                                        height="24px"
+                                        alt={`coinbase wallet icon`}
+                                    />} onClick={() => { connectWallet('coinbase', this.setTips) }}>Coinbase Wallet</Button>
+                                <Button variant="outlined"
+                                    sx={{
+                                        display: 'flex',
+                                        flexDirection: 'row',
+                                        justifyContent: 'space-between',
+                                        width: '100%',
+                                        mb: '8px',
+                                        textTransform: 'none',
+                                    }}
+                                    size="large" endIcon={<img
+                                        src={`/icons/wallets/walletConnect.svg`}
+                                        width="24px"
+                                        height="24px"
+                                        alt={`wallet connect icon`}
+                                    />} onClick={() => { connectWallet('walletconnect', this.setTips, this.handleByState) }}>WalletConnect</Button>
+                            </Stack>}
+                        {this.state.isLoading &&
+                            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '300px' }}>
+                                <CircularProgress />
+                            </Box>}
                     </DialogContent>
                 </Dialog>
             </Box>

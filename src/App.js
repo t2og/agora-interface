@@ -13,7 +13,10 @@ import AgoraContract from './contracts/Agora.json';
 import MerchandiseContract from './contracts/Merchandise.json';
 import MuiAlert from '@mui/material/Alert';
 import { USE_NETWORK, RPC_PROVIDERS } from "./config/chains";
-import CoinbaseWalletSDK from '@coinbase/wallet-sdk'
+import CoinbaseWalletSDK from '@coinbase/wallet-sdk';
+import { EthereumProvider } from '@walletconnect/ethereum-provider';
+import UniversalProvider from "@walletconnect/universal-provider";
+import { WalletConnectModal } from "@walletconnect/modal";
 
 function App() {
   const [currentAccount, setCurrentAccount] = useState('');
@@ -22,8 +25,9 @@ function App() {
   const [agoraContract, setAgoraContract] = useState(null);
   const [merchandiseContract, setMerchandiseContract] = useState(null);
   const [localDataList, setLocalData] = useState([]);
+  const [ethereumProvider, setEthereumProvider] = useState();
 
-  const connectWallet = async (walletType, callback) => {
+  const connectWallet = async (walletType, callback, handleWalletState) => {
     let web3;
     let web3Provider;
     let accounts;
@@ -61,6 +65,53 @@ function App() {
             console.error("User denied account access");
           }
         }
+        break;
+      case 'walletconnect':
+        // Using EthereumProvider
+        if (!ethereumProvider) {
+          throw new ReferenceError("WalletConnect Client is not initialized.");
+        }
+        web3Provider = ethereumProvider;
+
+        // Listening QRcode show event
+        web3Provider.on("display_uri", async (uri) => {
+          console.log("QR Code Modal open");
+          handleWalletState(false);
+        });
+        try {
+          handleWalletState(true, true);
+          await web3Provider.connect();
+          accounts = await web3Provider.request({ method: 'eth_requestAccounts' });
+        } catch (error) {
+          console.error("walletConnect ERR:", error);
+          // Reopen wallet choose window if no accounts
+          handleWalletState(true);
+        }
+        break;
+      case 'walletconnect2':
+        // Using UniversalProvider
+        web3Provider = await getWalletConnectProvider2();
+        const session = await web3Provider.connect({
+          namespaces: {
+            eip155: {
+              methods: [
+                "eth_sendTransaction",
+                "eth_signTransaction",
+                "eth_sign",
+                "personal_sign",
+                "eth_signTypedData",
+              ],
+              chains: [`eip155:${USE_NETWORK}`],
+              events: ["chainChanged", "accountsChanged"],
+              rpcMap: {
+                [USE_NETWORK]:
+                  `https://rpc.walletconnect.com?chainId=eip155:${USE_NETWORK}&projectId=${process.env.REACT_APP_PROJECT_ID}`
+              },
+            },
+          },
+        });
+        accounts = await web3Provider.enable();
+        console.log("accounts", accounts);
         break;
       default:
         console.error("Missing wallet type");
@@ -105,6 +156,40 @@ function App() {
     return coinbaseWallet.makeWeb3Provider(DEFAULT_ETH_JSONRPC_URL, DEFAULT_CHAIN_ID);
   }
 
+  const getWalletConnectProvider = async () => {
+    const provider = await EthereumProvider.init({
+      projectId: process.env.REACT_APP_PROJECT_ID,
+      chains: [1],
+      optionalChains: [5],
+      showQrModal: true,
+      methods: ["eth_requestAccounts", "eth_sendTransaction",
+        "eth_signTransaction",
+        "eth_sign",
+        "personal_sign",
+        "eth_signTypedData",], // REQUIRED ethereum methods
+      events: ["chainChanged", "accountsChanged"], // REQUIRED ethereum events
+    });
+    setEthereumProvider(provider);
+    return provider;
+  }
+
+  const getWalletConnectProvider2 = async () => {
+    const provider = await UniversalProvider.init({
+      projectId: process.env.REACT_APP_PROJECT_ID,
+      logger: "debug",
+      relayUrl: "wss://relay.walletconnect.com",
+    });
+    // Register open QR modal
+    const web3Modal = new WalletConnectModal({
+      projectId: process.env.REACT_APP_PROJECT_ID || "",
+    });
+    provider.on("display_uri", async (uri) => {
+      console.log("EVENT", "QR Code Modal open");
+      web3Modal?.openModal({ uri });
+    });
+    return provider;
+  }
+
   const registerContract = async (web3) => {
     const networkId = await web3.eth.net.getId();
     if (!AgoraContract.networks[networkId]) {
@@ -138,7 +223,11 @@ function App() {
   useEffect(() => {
     //connectWallet();
     getData();
-  }, [])
+  }, []);
+
+  useEffect(() => {
+    getWalletConnectProvider();
+  }, []);
 
   return (
     <AppContext.Provider value={{ currentAccount, connectWallet, web3, agoraContract, merchandiseContract }}>
