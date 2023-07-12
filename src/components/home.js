@@ -40,32 +40,6 @@ class Home extends Component {
   };
 
   getContract = async (web3) => {
-    const { agoraContract, merchandiseContract } = this.context;
-    let _agoraContract, _merchandiseContract;
-    if (agoraContract === null) {
-      const networkId = await web3.eth.net.getId();
-      if (!AgoraContract.networks[networkId]) {
-        alert("Can't support current chain.");
-        console.error("Wrong chainId");
-        return;
-      }
-      // Agora contract
-      const agoraContract = new web3.eth.Contract(
-        AgoraContract.abi,
-        AgoraContract.networks[networkId].address
-      );
-      // Merchandise contract
-      const merchandiseContract = new web3.eth.Contract(
-        MerchandiseContract.abi,
-        MerchandiseContract.networks[networkId].address
-      );
-      _agoraContract = agoraContract;
-      _merchandiseContract = merchandiseContract;
-    } else {
-      _agoraContract = agoraContract;
-      _merchandiseContract = merchandiseContract;
-    }
-
     // Query events on backend
     /*let dataList = [];
     if (GET_LIST_URL !== "") {
@@ -107,6 +81,32 @@ class Home extends Component {
     }
     if (dataList.length > 0) {
       return;
+    }
+
+    const { agoraContract, merchandiseContract } = this.context;
+    let _agoraContract, _merchandiseContract;
+    if (agoraContract === null) {
+      const networkId = await web3.eth.net.getId();
+      if (!AgoraContract.networks[networkId]) {
+        alert("Can't support current chain.");
+        console.error("Wrong chainId");
+        return;
+      }
+      // Agora contract
+      const agoraContract = new web3.eth.Contract(
+        AgoraContract.abi,
+        AgoraContract.networks[networkId].address
+      );
+      // Merchandise contract
+      const merchandiseContract = new web3.eth.Contract(
+        MerchandiseContract.abi,
+        MerchandiseContract.networks[networkId].address
+      );
+      _agoraContract = agoraContract;
+      _merchandiseContract = merchandiseContract;
+    } else {
+      _agoraContract = agoraContract;
+      _merchandiseContract = merchandiseContract;
     }
 
     // Query events on chain
@@ -277,7 +277,7 @@ class Home extends Component {
     return (
       <Box>
         {data.map((attr, index) => (
-          <Stack direction="row">
+          <Stack direction="row" key={index}>
             <Typography noWrap variant="subtitle2">
               {attr.trait_type}:{" "}
             </Typography>
