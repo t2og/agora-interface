@@ -92,29 +92,15 @@ class Home extends Component {
     if (GET_ITEMS_URL != "") {
       try {
         const response = await fetch(GET_ITEMS_URL);
-        const fetchData = await response.json();
-        dataList = fetchData.items;
+        dataList = await response.json();
         // formatter
-        Promise.all(
-          dataList.map(async (data, index) => {
-            data.seller = shortenAddress(data.seller, 13);
-            data.price = web3.utils.fromWei(data.itemInfo.price);
-            data.name = "";
-            data.image = "";
-            data.description = "";
-            data.attributes = [];
-            // url
-            /*const r = await fetch(data.itemInfo.url);
-            const d = await r.json();
-            data.name = d.name;
-            data.image = d.image;
-            data.description = d.description;
-            data.attributes = d.attributes;*/
-            return data;
-          })
-        ).then((results) => this.setState({
-          dataList: results,
-        }));
+        dataList.map((data, index) => {
+          data.seller = shortenAddress(data.seller, 13);
+          data.price = web3.utils.fromWei(data.price);
+        })
+        this.setState({
+          dataList: dataList,
+        });
       } catch (error) {
         console.error("subgraph failed", error);
       }
