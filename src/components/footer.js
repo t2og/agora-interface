@@ -42,9 +42,9 @@ class Footer extends Component {
                             })}
                         </Stack>
                         <Stack spacing={2}>
-                            {linkArr3.map((l, k) => {
-                                return <Linker key={k} text={l.text} href={l.href} />
-                            })}
+                            <Link component={RouterLink} onClick={() => { window.open("https://github.com/njxieyt/agora") }} underline="hover" color="white">
+                                Github
+                            </Link>
                         </Stack>
                     </Stack>
                 </Box>
